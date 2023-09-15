@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from chargik.env import config
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -46,6 +47,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.telegram',
+    'ckeditor',
+    'ckeditor_uploader',
+
+    "tours",
 ]
 
 MIDDLEWARE = [
@@ -73,6 +78,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'chargik.context_processors.vendor_files'
             ],
         },
     },
@@ -149,8 +155,11 @@ MEDIA_ROOT = BASE_DIR.parent / "local-cdn" / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SITE_ID = 1
-ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -171,4 +180,23 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         }
     }
+}
+
+DJANGORESIZED_DEFAULT_QUALITY = 75
+DJANGORESIZED_DEFAULT_KEEP_META = True
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'WEBP'
+
+
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_THUMBNAIL_SIZE = (500, 500)
+CKEDITOR_STORAGE_BACKEND = 'django.core.files.storage.FileSystemStorage'
+
+CKEDITOR_CONFIGS={
+  'default': {
+    'toolbar': 'Full',
+
+  },
 }

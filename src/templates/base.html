@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ object.seo_description }}">
+    <meta name="keywords" content="Travellab, трэвэл лаб, тревел лаб, трэвел лаб, тревэл лаб, {{ object.seo_keywords }}">
+    <meta name="robots" content="index, follow"/>
+    <meta name="distribution" content="global"/>
+    <meta name="author" content="travellab">
+    <meta property="og:title" content="{{ object.title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://travellab.by/{{ object.slug }}" />
+    <meta property="og:description" content="{{ object.description }}" />
+    <meta name="referrer" content="unsafe-url"/>
+    <link rel="canonical" href="https://travellab.by/{{ object.slug }}"/>
+    <title>{% block head_title %}Travel Lab | {% endblock %}</title>
+    {% include 'base/css.html' %}
+    {% block seo %}
+    {% endblock seo %}
+  </head>
+  <body>
+    {% include 'base/navbar.html' %}
+    <div class="container relative px-6 mx-auto">
+      {% block content %}
+
+      {% endblock content %}
+
+    </div>
+    {% include 'base/js.html' %}
+  </body>
+</html>

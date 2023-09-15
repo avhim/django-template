@@ -1,0 +1,14 @@
+{
+    "emmet.triggerExpansionOnTab": true,
+    "tailwindCSS.codeActions": true,
+    "tailwindCSS.experimental.classRegex": [
+
+    ],
+    "tailwindCSS.emmetCompletions": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.quickSuggestions": {
+    "strings": true
+    },
+    "css.validate": false,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+}
