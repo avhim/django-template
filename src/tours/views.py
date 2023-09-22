@@ -19,3 +19,11 @@ def tour_detail_view(request, slug=None):
         "object" : object,
     }
     return render(request, "tours/detail.html", context)
+
+
+def tour_corporate_view(request):
+    tours = Tour.objects.all().filter(active=True)
+    context = {
+        "objects" : tours
+    }
+    return render(request, "tours/corporate.html", context)
