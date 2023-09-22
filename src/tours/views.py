@@ -13,9 +13,9 @@ def tour_list_view(request):
 
 def tour_detail_view(request, slug=None):
     object = get_object_or_404(Tour, slug=slug)
-    object_description_day = TourDescriptionDay.objects.filter(tour=object)
+    # object_description_day = TourDescriptionDay.objects.filter(tour=object)
+
     context = {
         "object" : object,
-        "object_description_day": object_description_day
     }
     return render(request, "tours/detail.html", context)

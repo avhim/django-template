@@ -84,3 +84,22 @@ class TourDescriptionDay(models.Model):
     class Meta:
         verbose_name = 'Описание дня'
         verbose_name_plural = 'Описание дней'
+
+
+class TourDayQuota(models.Model):
+    tour = models.ForeignKey(Tour, default=None, on_delete=models.CASCADE)
+    active = models.BooleanField(default=False, verbose_name="Активная дата")
+    tour_date = models.DateField(null=True, verbose_name="Дата тура")
+    total_quotas = models.PositiveIntegerField(null=True, blank=True, verbose_name="Всего мест")
+    # active_quotas = models.PositiveIntegerField(verbose_name="Оставшиеся места")
+    sold_quotas = models.PositiveIntegerField(null=True, blank=True, verbose_name="Проданные места")
+    price_adult = models.DecimalField(max_digits=7, decimal_places=2, verbose_name="Цена взрослый")
+    price_child = models.DecimalField(max_digits=7, decimal_places=2, verbose_name="Цена детский")
+
+    def __str__(self):
+        return f'{self.tour} - {self.tour_date}'
+
+    class Meta:
+        verbose_name = 'Дата-Квота'
+        verbose_name_plural = 'Даты-Квоты'
+        ordering = ["tour_date"]

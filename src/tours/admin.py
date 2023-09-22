@@ -1,14 +1,18 @@
 from django.contrib import admin
-from .models import Tour, TourDescriptionDay
+from .models import Tour, TourDescriptionDay, TourDayQuota
 # Register your models here.
 
+
+class TourDayQuotaAdmin(admin.TabularInline):
+    model = TourDayQuota
+    extra = 1
 
 class TourDescriptionDayAdmin(admin.StackedInline):
     model = TourDescriptionDay
     extra = 1
 
 class TourAdmin(admin.ModelAdmin):
-    inlines = [TourDescriptionDayAdmin,]
+    inlines = [TourDescriptionDayAdmin,TourDayQuotaAdmin, ]
     list_display = ["active", "title", "updated"]
     list_editable = ["active"]
     list_display_links = ["title"]
@@ -16,7 +20,7 @@ class TourAdmin(admin.ModelAdmin):
     search_fields = ('title', 'country')
     fieldsets = (
         (None, {
-            'fields': ('active', 'title', 'slug')
+            'fields': ('active', 'title', 'slug', 'count_views')
         }),
         ('Главное изображение', {
             'fields': ('img', 'first_title', 'second_title')
@@ -38,3 +42,4 @@ class TourAdmin(admin.ModelAdmin):
 
 admin.site.register(Tour, TourAdmin)
 admin.site.register(TourDescriptionDay)
+admin.site.register(TourDayQuota)
