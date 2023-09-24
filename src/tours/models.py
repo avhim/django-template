@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from django.conf import settings
 from ckeditor_uploader.fields import RichTextUploadingField
 from django_resized import ResizedImageField
 
@@ -25,6 +25,7 @@ class Tour(models.Model):
     active = models.BooleanField(default=False, verbose_name='Отображать')
     title = models.CharField(max_length=128, verbose_name='Название тура')
     slug = models.SlugField(unique=True, verbose_name='Ссылка на тур')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.DO_NOTHING)
 
     seo_keywords = models.TextField(null=True, blank=True, verbose_name="SEO слова")
     seo_description = models.TextField(null=True, blank=True, verbose_name="SEO описание")
@@ -48,7 +49,7 @@ class Tour(models.Model):
     description_tour = models.TextField(null=True, blank=True, verbose_name="описание тура")
 
     included = models.TextField(null=True, blank=True, verbose_name="Включено в стоимость")
-    not_included = models.TextField(null=True, blank=True, verbose_name="Не включено в стоимость")
+    not_included = models.TextField(null=True, blank=True, verbose_name="Дополнительно оплачивается")
 
     # hotels = models.ManyToManyField(Hotel, verbose_name="Отели")
     # category = models.ManyToManyField('CategoryTour', verbose_name="Тип тура")
@@ -74,7 +75,7 @@ class Tour(models.Model):
 
 
 class TourDescriptionDay(models.Model):
-    tour = models.ForeignKey(Tour, default=None, on_delete=models.CASCADE)
+    tour = models.ForeignKey(Tour, default=None, on_delete=models.CASCADE, verbose_name="Тур")
     day = models.CharField(default="День 1", max_length=12)
     description = RichTextUploadingField(null=True, blank=True)
 
