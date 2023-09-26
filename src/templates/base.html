@@ -15,7 +15,7 @@
     <meta property="og:description" content="{{ object.description }}" />
     <meta name="referrer" content="unsafe-url"/>
     <link rel="canonical" href="https://travellab.by/{{ object.slug }}"/>
-    <title>{% block head_title %}Travel Lab | {% endblock %}</title>
+    <title>{% block head_title %}Travel Lab | Главная{% endblock %}</title>
     {% include 'base/css.html' %}
     {% block seo %}
     {% endblock seo %}
@@ -30,5 +30,10 @@
     </div>
     {% include 'base/footer.html' %}
     {% include 'base/js.html' %}
+    {% comment %} <script>
+      document.body.addEventListener('htmx:configRequest', (event) => {
+      event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      })
+    </script> {% endcomment %}
   </body>
 </html>

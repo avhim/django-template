@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -49,7 +50,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.telegram',
     'ckeditor',
     'ckeditor_uploader',
+    'django_celery_results',
 
+    'callback',
     "tours",
 ]
 
@@ -203,3 +206,22 @@ CKEDITOR_CONFIGS={
 }
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+# CELERY SETTINGS
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_ACCEPT_CONTENT = {'application/json'}
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Minsk'
+CELERY_RESULT_BACKEND = 'django-db'
+
+# SMTP SETTINGS
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', cast=str, default=None)
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', cast=str, default=None)
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', cast=str, default=None)
