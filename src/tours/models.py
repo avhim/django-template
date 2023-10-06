@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
+# from django.contrib.contenttypes.fields import GenericRelation
+
 from ckeditor_uploader.fields import RichTextUploadingField
 from django_resized import ResizedImageField
 
@@ -43,7 +45,7 @@ class Tour(models.Model):
     comission = models.FloatField(null=True, blank=True, default=10, verbose_name="Комиссия")
 
     route = models.TextField(null=True, blank=True, verbose_name="Маршрут")
-    country = models.CharField(max_length=30, null=True, blank=True, verbose_name="Страна")
+    country = models.ManyToManyField('CountryTour')
     num_days = models.IntegerField(default=1, verbose_name="Количество дней")
     night_transfer = models.IntegerField(default=0, verbose_name="Ночных перездов")
     description_tour = models.TextField(null=True, blank=True, verbose_name="описание тура")
@@ -52,7 +54,7 @@ class Tour(models.Model):
     not_included = models.TextField(null=True, blank=True, verbose_name="Дополнительно оплачивается")
 
     # hotels = models.ManyToManyField(Hotel, verbose_name="Отели")
-    # category = models.ManyToManyField('CategoryTour', verbose_name="Тип тура")
+    category = models.ManyToManyField('CategoryTour')
     # comments = GenericRelation(Comment, related_query_name='tour', verbose_name="Комментарии")
     # gallery = GenericRelation(Gallery, related_query_name='tour', verbose_name="Галерея")
     # manager = models.ManyToManyField(Manager, default=None, verbose_name="Менеджер")
@@ -104,3 +106,37 @@ class TourDayQuota(models.Model):
         verbose_name = 'Дата-Квота'
         verbose_name_plural = 'Даты-Квоты'
         ordering = ["tour_date"]
+
+
+class CategoryTour(models.Model):
+    title = models.CharField(max_length=128, default="")
+    slug = models.SlugField(unique=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Тип тура'
+        verbose_name_plural = 'Типы туров'
+        ordering = ["title"]
+
+
+class CountryTour(models.Model):
+    title = models.CharField(max_length=128, default="")
+    slug = models.SlugField(unique=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    def get_absolute_url(self):
+        return reverse('country', kwargs={'slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Страна'
+        verbose_name_plural = 'Страны'
+        ordering = ["title"]

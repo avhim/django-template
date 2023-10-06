@@ -5,8 +5,21 @@
 <form method="POST" action="." enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
-  {{ form_day.media }}
-  {{ form_day.as_p }}
+  <div class="flex mt-4 md:mt-0 md:ml-4">
+    <button type="button" hx-get="{% url 'tour-create-day-form' %}" hx-target="#day_forms" hx-swap="beforeend"
+        class="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Добавить день
+    </button>
+  </div>
+  <div id="day_forms"></div>
+  <div class="flex mt-4 md:mt-0 md:ml-4">
+    <button type="button" hx-get="{% url 'tour-create-date-price-form' %}" hx-target="#date_price_forms" hx-swap="beforeend"
+        class="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Добавить дату и цену
+    </button>
+  </div>
+  <div id="date_price_forms"></div>
+
   <button type="submit" class="mt-2 btn-submit">Создать</button>
 </form>
 

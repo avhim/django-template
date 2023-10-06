@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tour, TourDescriptionDay, TourDayQuota
+from .models import Tour, TourDescriptionDay, TourDayQuota, CategoryTour, CountryTour
 # Register your models here.
 
 
@@ -40,6 +40,16 @@ class TourAdmin(admin.ModelAdmin):
     )
     prepopulated_fields = {"slug": ("title",)}
 
+
+class CategoryTourAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("title",)}
+
+class CountryTourAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("title",)}
+
+
 admin.site.register(Tour, TourAdmin)
 admin.site.register(TourDescriptionDay)
 admin.site.register(TourDayQuota)
+admin.site.register(CategoryTour, CategoryTourAdmin)
+admin.site.register(CountryTour, CountryTourAdmin)

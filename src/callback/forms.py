@@ -1,6 +1,6 @@
 from django import forms
 from .models import CallBack
-
+from .tasks import send_notification_mail
 
 input_css_class = "form-control"
 
@@ -15,5 +15,7 @@ class CallBackForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = input_css_class
 
-    def send_email():
-        pass
+    # def send_email(self,name=None, phone=None, url=None):
+    def send_email(self, callback):
+        msg = f' Пользователь имя: {callback.name} \n номер телефона: {callback.phone_number} \n оставил заявку на странице {callback.url} \n в {callback.timestamp}'
+        send_notification_mail.delay(msg)

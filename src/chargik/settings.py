@@ -51,9 +51,15 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'django_celery_results',
+    'easy_thumbnails',
+    'rest_framework',
 
+    'agencies',
+    'blog',
     'callback',
-    "tours",
+    'clients',
+    'tours',
+    'reviews',
 ]
 
 MIDDLEWARE = [
@@ -134,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
 TIME_ZONE = 'Europe/Minsk'
 
@@ -225,3 +231,14 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', cast=str, default=None)
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', cast=str, default=None)
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', cast=str, default=None)
+
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'easy_thumbnails.processors.scale_and_crop',
+    'easy_thumbnails.processors.filters',
+)
+
+THUMBNAIL_EXTENSION = 'webp'
+THUMBNAIL_TRANSPARENCY_EXTENSION = 'webp'

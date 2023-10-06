@@ -4,6 +4,7 @@ from .models import CallBack
 
 
 class CallBackAdmin(admin.ModelAdmin):
+    list_display = ["name", "phone_number", "url", "timestamp"]
     ordering = ["-timestamp"]
     search_fields = ("name", "phone_number",)
 
