@@ -29,13 +29,16 @@ class TourAdmin(admin.ModelAdmin):
             'fields': ('price', 'old_price', 'currency', 'service_price', 'service_price_child', 'comission')
         }),
         ('Краткое описание тура', {
-            'fields': ('route', 'country', 'num_days', 'night_transfer', 'description_tour')
+            'fields': ('route', 'country', 'num_days', 'night_transfer', 'description_tour', 'category')
         }),
         ('Входит/Не входит', {
             'fields': ('included', 'not_included')
         }),
         ('SEO', {
-            'fields': ('seo_keywords', 'seo_description', 'json_ld')
+            'fields': ('seo_keywords', 'seo_description')
+        }),
+        ('Отели', {
+            'fields': ('hotels',)
         }),
     )
     prepopulated_fields = {"slug": ("title",)}

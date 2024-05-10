@@ -1,10 +1,13 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
-# from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.contenttypes.fields import GenericRelation
 
 from ckeditor_uploader.fields import RichTextUploadingField
 from django_resized import ResizedImageField
+
+from reviews.models import Review
+from hotels.models import Hotel
 
 # Create your models here.
 
@@ -31,7 +34,6 @@ class Tour(models.Model):
 
     seo_keywords = models.TextField(null=True, blank=True, verbose_name="SEO слова")
     seo_description = models.TextField(null=True, blank=True, verbose_name="SEO описание")
-    json_ld = models.TextField(null=True, blank=True, verbose_name="JSON-LD")
 
     img = ResizedImageField(upload_to=tours_img_upload)
     first_title = models.TextField(null=True, blank=True, verbose_name="Заголовок на изображении")
@@ -53,10 +55,9 @@ class Tour(models.Model):
     included = models.TextField(null=True, blank=True, verbose_name="Включено в стоимость")
     not_included = models.TextField(null=True, blank=True, verbose_name="Дополнительно оплачивается")
 
-    # hotels = models.ManyToManyField(Hotel, verbose_name="Отели")
-    category = models.ManyToManyField('CategoryTour')
-    # comments = GenericRelation(Comment, related_query_name='tour', verbose_name="Комментарии")
-    # gallery = GenericRelation(Gallery, related_query_name='tour', verbose_name="Галерея")
+    hotels = models.ManyToManyField(Hotel, verbose_name="Отели")
+    category = models.ManyToManyField('CategoryTour', verbose_name="тип тура")
+    reviews = GenericRelation(Review, related_query_name="tour")
     # manager = models.ManyToManyField(Manager, default=None, verbose_name="Менеджер")
 
     count_views = models.PositiveIntegerField(default=0)
@@ -64,8 +65,19 @@ class Tour(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
+
     def __str__(self):
-        return self.title
+        return f'{self.title}'
+
+    @property
+    def days_description(self):
+        qs = TourDescriptionDay.objects.filter(tour_id=self.pk, active=True)
+        return qs
+
+    @property
+    def day_quota(self):
+        qs = TourDayQuota.objects.filter(tour_id=self.pk, active=True)
+        return qs
 
     def get_absolute_url(self):
         return reverse('tour-detail', kwargs={'slug': self.slug})
@@ -78,6 +90,7 @@ class Tour(models.Model):
 
 class TourDescriptionDay(models.Model):
     tour = models.ForeignKey(Tour, default=None, on_delete=models.CASCADE, verbose_name="Тур")
+    active = models.BooleanField(default=False)
     day = models.CharField(default="День 1", max_length=12)
     description = RichTextUploadingField(null=True, blank=True)
 
@@ -111,6 +124,7 @@ class TourDayQuota(models.Model):
 class CategoryTour(models.Model):
     title = models.CharField(max_length=128, default="")
     slug = models.SlugField(unique=True)
+    img = ResizedImageField(upload_to="tours/categoty", null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

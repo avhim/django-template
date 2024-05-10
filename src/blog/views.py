@@ -1,17 +1,19 @@
 from django.contrib.admin.views.decorators import staff_member_required
 
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Post
 from .forms import PostCreateForm
-from reviews.forms import ReviewCreateForm
+from reviews.forms import ReviewForm
 
 # Create your views here.
 
 def blog_list_view(request):
-    posts = Post.objects.filter(active=True)
+    # posts = Post.objects.filter(active=True)
+    posts = Post.objects.annotate(Count("reviews"), Avg("reviews__rating", default=0)) #annotated queryset, count reviews for post, post[0].reviews__count
+
     context = {
         "objects": posts,
     }
@@ -20,19 +22,15 @@ def blog_list_view(request):
 
 def post_detail_view(request, slug=None):
     post = get_object_or_404(Post, slug=slug)
-    if post.reviews.exists():
-        reviews = post.reviews
-        count_review = len(reviews)
-        avg_rating = f"{reviews.aggregate(Avg('rating'))['rating__avg']:.2f}"
-    else:
-        reviews = None
-        count_review = 0
-        avg_rating = 5
-    review_form = ReviewCreateForm(request.POST or None)
+    review_form = ReviewForm(request.POST or None)
+    reviews = post.reviews.filter(active=True)
+    count_review, avg_rating = post.reviews.filter(active=True).aggregate(Count("id"), Avg("rating", default=0))
+    # count_review = post.reviews.count()
+    # avg_rating = f"{post.reviews.aggregate(Avg('rating', default=0))['rating__avg']:.2f}"
     context = {
         "object" : post,
-        "reviews": reviews,
         "count_review": count_review,
+        "reviews": reviews,
         "avg_rating": avg_rating,
         "review_form": review_form,
 

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block head_title %}{{ block.super }}{{ object.title }}{% endblock head_title %}
+{% block head_title %}{{ object.title }}{% endblock head_title %}
 
 
 {% block content %}
 
 <div class="relative md:w-1/2 sm:w-max">
-    <img class="rounded-lg" src="{{ object.image.url }}" alt="{{ object.title }}">
+    <img class="rounded-lg" src="{{ object.img.url }}" alt="{{ object.title }}">
 
     <div class="flex flex-row justify-between pt-2">
         <div>

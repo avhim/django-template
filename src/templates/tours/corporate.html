@@ -1,230 +1,244 @@
 {% extends "base.html" %}
-
-{% block head_title %}{{ block.super }}Корпоративные туры{% endblock head_title %}
-
+{% load static %}
+{% block head_title %}Корпоративные туры{% endblock head_title %}
 
 {% block content %}
 
-{% comment %} hero section {% endcomment %}
-
-<section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
-  <div class="max-w-screen-xl px-4 py-24 mx-auto text-center lg:py-56">
-      <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">Мы организовали более 150 корпоративных туров</h1>
-      <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Мы компания "Трэвэл Лаб" - надежный партнер с семилетним опытом, специализируемся на организации насыщенных корпоративных автобусных туров и считаемся ведущим туроператором для корпоративных клиентов в СНГ с момента нашего основания в 2016 году. Тысячи довольных корпоративных туристов выбирают наши услуги снова и снова. Наше кредо - создавать незабываемые впечатления и укреплять корпоративный дух вашей компании. </p>
-      <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-          <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-              Секция формы
-              <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-              </svg>
-          </a>
-          <a href="#reviews" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-white rounded-lg hover:text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
-              Отзывы о работе с нами
-          </a>
+<div class="container px-4 py-5 col-xxl-8">
+    <div class="py-5 row flex-lg-row-reverse align-items-center g-5">
+      <div class="col-lg-5">
+        <img src="{% static 'img/korporativniy_ tur_master_klass_v_pekarne.webp' %}" class="rounded mx-auto img-fluid" alt="Корпоративные туры" loading="lazy">
       </div>
-  </div>
-</section>
-
-{% comment %} feature section {% endcomment %}
-<section class="bg-white dark:bg-gray-900">
-  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:px-6">
-      <div class="mb-8 text-center lg:mb-16">
-          <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Наши преимущества</h2>
-          <p class="text-gray-500 sm:text-xl dark:text-gray-400">Выбирая нас вы получаете:</p>
+      <div class="col-lg-7">
+        <h1 class="mb-3 fw-bold text-body-emphasis lh-1">На связи Travellab - лаборатория путешествий и незабываемых впечатлений.</h1>
+        <p class="lead">Уже более 7 лет мы воплощаем любые по сложности идеи и организуем туры и выездные мероприятия, помогая укреплять корпоративный дух сотрудников разных компаний.</p>
+        <div class="gap-2 d-grid d-md-flex justify-content-md-start">
+          <a type="button" class="px-4 btn btn-primary btn-lg me-md-2" href="#reviews">Отзывы</a>
+        </div>
       </div>
-      <div class="space-y-8 md:grid md:grid-cols-4 md:gap-12 md:space-y-0">
-          <div>
-              <div class="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
-                <svg class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z"/>
-                </svg>
-              </div>
-              <h3 class="mb-2 text-xl font-bold dark:text-white">Отличное настроение</h3>
-              <p class="text-gray-500 dark:text-gray-400">Уникальные экскурсии и нескучные гиды.</p>
-          </div>
-          <div>
-              <div class="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
-                  <svg class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
-                    <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
-                  </svg>
-              </div>
-              <h3 class="mb-2 text-xl font-bold dark:text-white">Организация под ключ.</h3>
-              <p class="text-gray-500 dark:text-gray-400">Проезд, проживание, питание, ведущий всё под ваши запросы.</p>
-          </div>
-          <div>
-              <div class="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
-                  <svg class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path><path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path></svg>
-              </div>
-              <h3 class="mb-2 text-xl font-bold dark:text-white">Полную отчетность и акты</h3>
-              <p class="text-gray-500 dark:text-gray-400">Полный пакет документов для вашей бухгалтери: счета, акты выполненых работ.</p>
-          </div>
-          <div>
-              <div class="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
-                  <svg class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path></svg>
-              </div>
-              <h3 class="mb-2 text-xl font-bold dark:text-white">Выгодные цены</h3>
-              <p class="text-gray-500 dark:text-gray-400">Мы известный туроператор и работаем с большинством отелей, перевозчиками и достопримечательстями.</p>
-          </div>
-      </div>
-  </div>
-</section>
-
-{% include 'forms/callback.html' %}
-
-<section class="bg-white dark:bg-gray-900">
-  <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
-      <div class="max-w-screen-sm mx-auto mb-8 text-center lg:mb-16">
-          <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 lg:text-4xl dark:text-white">Примеры наших туров</h2>
-          <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Также можно выбрать один из наших готовых туров и на его основе составить программу.</p>
-      </div>
-      <div class="grid gap-8 space-y-8 lg:grid-cols-3 md:grid-cols-2 md:gap-12 md:space-y-0">
-
-        {% for object in objects %}
-          {% include 'tours/list-card.html' with object=object %}
-        {% endfor %}
-
-      </div>
-  </div>
-</section>
-
-{% include 'forms/callback.html' %}
-
-
-<section class="bg-white dark:bg-gray-900">
-  <div id="reviews" class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6 ">
-      <div class="max-w-screen-sm mx-auto mb-8 text-center lg:mb-16">
-          <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Отзывы о нас</h2>
-          <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Почитайте настоящие отзывы о работае с нами, так же вы можете написать им напрямую и спросить, как прошёл их отдых.</p>
-      </div>
-      <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-          <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700">
-              <a href="#">
-                  <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar">
-              </a>
-              <div class="p-5">
-                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      <a href="#">Bonnie Green</a>
-                  </h3>
-                  <span class="text-gray-500 dark:text-gray-400">CEO & Web Developer</span>
-                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Отдых был замечатлеьный</p>
-                  <ul class="flex space-x-4 sm:mt-0">
-                      <li>
-                          <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700">
-              <a href="#">
-                  <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Avatar">
-              </a>
-              <div class="p-5">
-                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      <a href="#">Jese Leos</a>
-                  </h3>
-                  <span class="text-gray-500 dark:text-gray-400">CTO</span>
-                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Jese drives the technical strategy of the flowbite platform and brand.</p>
-                  <ul class="flex space-x-4 sm:mt-0">
-                      <li>
-                          <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700">
-              <a href="#">
-                  <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="Michael Avatar">
-              </a>
-              <div class="p-5">
-                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      <a href="#">Michael Gough</a>
-                  </h3>
-                  <span class="text-gray-500 dark:text-gray-400">Senior Front-end Developer</span>
-                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Michael drives the technical strategy of the flowbite platform and brand.</p>
-                  <ul class="flex space-x-4 sm:mt-0">
-                      <li>
-                          <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700">
-              <a href="#">
-                  <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png" alt="Sofia Avatar">
-              </a>
-              <div class="p-5">
-                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      <a href="#">Lana Byrd</a>
-                  </h3>
-                  <span class="text-gray-500 dark:text-gray-400">Marketing & Sale</span>
-                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Lana drives the technical strategy of the flowbite platform and brand.</p>
-                  <ul class="flex space-x-4 sm:mt-0">
-                      <li>
-                          <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
-
-<section class="bg-white dark:bg-gray-900">
-    <div class="max-w-screen-md px-4 py-8 mx-auto lg:py-16">
-        <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-center text-gray-900 dark:text-white">Также с нами можно связаться</h2>
-        <p class="mb-4 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">Вы можете написать нам удобным для вас способом и мы расчитаем вам программу тура:</p>
-        <ul class="flex space-x-4 sm:mt-0">
-            <li>
-                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M7.979 5v1.586a3.5 3.5 0 0 1 3.082-1.574C14.3 5.012 15 7.03 15 9.655V15h-3v-4.738c0-1.13-.229-2.584-1.995-2.584-1.713 0-2.005 1.23-2.005 2.5V15H5.009V5h2.97ZM3 2.487a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" clip-rule="evenodd"/>
-                        <path d="M3 5.012H0V15h3V5.012Z"/>
-                    </svg>
-                </a>
-            </li>
-
-        </ul>
     </div>
-  </section>
+  </div>
 
+{% comment %} feauters icons {% endcomment %}
 
-{% endblock %}
+<div class="container px-4" id="feauters">
+    <h2 class="pb-2 border-bottom">Выбрав нас, вы получите:</h2>
+    <div class="py-5 row row-cols-1 row-cols-sm-2 g-4">
+      <div class="col d-flex align-items-start">
+        <i class="px-2 bi bi-hand-thumbs-up fs-2"></i>
+        <div>
+          <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Индивидуальный подход</h3>
+          <p>Опираясь на наш 7-и летний опыт и учитывая ваши пожелания и бюджет, мы разработаем насыщенную программу с интересными местами, полную комфорта и удовольствия.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <i class="px-2 bi bi-piggy-bank fs-2"></i>
+        <div>
+          <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Доступные цены</h3>
+          <p>Благодаря эксклюзивным договорам с проверенными подрядчиками, вам откроются самые выгодные условия для вашего корпоративного тура.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <i class="px-2 bi bi-people-fill fs-2"></i>
+        <div>
+          <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Профессиональная команда</h3>
+          <p>Ответственные менеджеры, опытные гиды и чуткие сопровождающие сделают ваш корпоративный тур продуманным, ярким и незабываемым. Вам не придется беспокоиться и заботиться об организационных моментах.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <i class="px-2 bi bi-arrow-repeat fs-2"></i>
+        <div>
+          <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Полное сопровождение</h3>
+          <p>Мы контролируем каждую деталь вашего тура/мероприятия от начала и до конца, гарантируя его качественное проведение и внимательное отношение к вашим пожеланиям на всех этапах.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <i class="px-2 bi bi-bus-front fs-2"></i>
+        <div>
+          <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Транспорт</h3>
+          <p>Наши автобусы туристического класса обеспечат необходимое количество мест, максимальный комфорт и безопасность ваших сотрудников во время поездок.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <i class="px-2 bi bi-house-heart-fill fs-2"></i>
+        <div>
+          <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Проживание и питание</h3>
+          <p>Мы подберем комфортные условия проживания для вашей команды и предложим организацию питания с учетом предпочтений ваших сотрудников.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<section id="callback-form" class="mb-3">
+    <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-center text-gray-900 dark:text-white">Свяжитесь с нами</h2>
+      <p class="mb-4 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">Заполните форму и получите индивидуальный расчет тура, после консультации.</p>
+      <div class="container">
+        <div class="row">
+          <div class="mx-auto col-sm col-md-6">
+            {% include 'forms/callback.html' %}
+          </div>
+        </div>
+      </div>
+</section>
+
+{% comment %} help section {% endcomment %}
+<div class="container px-4 py-2" id="help-section">
+    <h2 class="pb-2 border-bottom">Мы поможем вам</h2>
+    <div class="row row-cols-1 row-cols-sm-2 g-4">
+        <div class="col-md-5">
+
+              <img src="{% static 'img/korporativnie-turi-pomosch-s-organizaciei-turov.webp' %}" alt="Корпоративные туры из Минска" class="rounded mx-auto img-fluid" loading="lazy">
+
+        </div>
+        <div class="col-md-7 gap-3">
+          <div class="d-flex align-items-start">
+            <i class="px-2 fs-2 bi bi-check-circle-fill"></i>
+              <div>
+                <p>Организовать яркий корпоративный тур или выездное мероприятие, не выходя за рамки бюджета</p>
+              </div>
+          </div>
+          <div class="d-flex align-items-start">
+            <i class="px-2 fs-2 bi bi-check-circle-fill"></i>
+              <div>
+                <p>Разработать уникальную программу тура, учитывая ваши пожелания и разнообразие интересов сотрудников</p>
+              </div>
+          </div>
+          <div class="d-flex align-items-start">
+            <i class="px-2 fs-2 bi bi-check-circle-fill"></i>
+              <div>
+                <p>Выбрать лучшие локации, места для проживания и питания</p>
+              </div>
+          </div>
+          <div class="d-flex align-items-start">
+            <i class="px-2 fs-2 bi bi-check-circle-fill"></i>
+              <div>
+                <p>Грамотно решить вопросы логистики и транспорта</p>
+              </div>
+          </div>
+          <div class="d-flex align-items-start">
+            <i class="px-2 fs-2 bi bi-check-circle-fill"></i>
+              <div>
+                <p>Расширить программу лояльности для ваших сотрудников</p>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="container p-4 py-5" id="tour-types">
+    <h2 class="pb-2 border-bottom">Виды корпоративных мероприятий</h2>
+    <p class="lead">Мы предлагаем вам профессиональную организацию выездных мероприятий и корпоративных туров различных форматов и масштабов:</p>
+    <div class="row justify-content-evenly">
+        <div class="col-md-3 mb-2">
+          <div class="d-grid gap-2">
+            <a href="#" class="btn btn-primary">Экскурсионные туры</a>
+            <a href="#" class="btn btn-primary">Дегустационные туры</a>
+            <a href="#" class="btn btn-primary">Рождественские<br>и новогодние туры</a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="d-grid gap-2">
+            <a href="#" class="btn btn-primary">Тимбилдинги</a>
+            <a href="#" class="btn btn-primary">Мастер классы и квесты</a>
+            <a href="#" class="btn btn-primary">Корпоративные вечера<br>и праздники</a>
+          </div>
+        </div>
+    </div>
+</div>
+{% comment %} advantages of corporate {% endcomment %}
+<div class="container px-4 py-5" id="advantages-corp">
+  <h2 class="pb-2 border-bottom">Плюсы корпоративных мероприятий</h2>
+  <div class="py-5 row row-cols-1 row-cols-md-2 g-4 justify-content-evenly">
+    <div class="col-md-4  text-center">
+      <div class="d-grid gap-2">
+        <img src="{% static 'img/plysi-korporatovnih-turov.webp' %}" alt="Корпоративные туры из Минска" class="rounded mx-auto img-fluid" loading="lazy">
+
+      </div>
+    </div>
+      <div class="col-md-4">
+        <div class="d-grid gap-2">
+          <p>Повышают лояльность сотрудников</p>
+          <p>Показывают, что вы цените команду</p>
+          <p>Объединяют коллег общими впечатлениями</p>
+          <p>Укрепляют связи между сотрудниками</p>
+          <p>Сближают коллег в неформальной обстановке</p>
+          <p>Поднимат командный дух</p>
+          <p>Укрепляют связи между сотрудниками</p>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% comment %} how-we-work {% endcomment %}
+
+<div class="container px-4" id="how-we-work">
+  <h2 class="pb-2 border-bottom">Как выглядит работа с нами?</h2>
+  <div class="py-5 row row-cols-1 row-cols-md-2 g-4">
+    <div class="col d-flex align-items-start">
+      <i class="px-2 bi bi-phone-vibrate-fill fs-2"></i>
+      <div>
+        <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Оформление заявки</h3>
+        <p>Оставьте контактный номер телефона и наш менеджер свяжется с вами, чтобы  обсудить все детали и пожелания по туру.</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <i class="px-2 bi bi-person-workspace fs-2"></i>
+      <div>
+        <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Разработка программы</h3>
+        <p>После получения всей информации мы начинаем разрабатывать программу.</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <i class="px-2 bi bi-people-fill fs-2"></i>
+      <div>
+        <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Согласование и утверждение</h3>
+        <p>Мы высылаем вам подробную программу тура, в которой прописаны все достопримечательности, маршрут, проживание и питание. </p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <i class="px-2 bi bi-arrow-repeat fs-2"></i>
+      <div>
+        <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Заключение договора и оплата</h3>
+        <p>После утверждения программы мы заключаем с вами договор удобным вам способом.</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <i class="px-2 bi-gear-fill fs-2"></i>
+      <div>
+        <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Передача программы в работу</h3>
+        <p>После поступления оплаты мы запускаем проект в работу.</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <i class="px-2 bi bi-house-heart-fill fs-2"></i>
+      <div>
+        <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Проведение и полное сопровождение меропрития</h3>
+        <p>Наш сопрождающий с вами на всем маршруте.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} how-we-work {% endcomment %}
+
+<div class="container px-4" id="how-we-work">
+  <h2 class="pb-2 border-bottom">Как оформить заявку?</h2>
+  <p class="lead">Для оформления заявки/уточнения дополнительных вопросов вы можете выбрать один из удобных для вас способов связи:</p>
+  <div class="py-5 row row-cols-1 row-cols-md-2 g-4">
+    <div class="mx-auto col-sm col-md-4 offset-1">
+      {% include 'forms/callback.html' %}
+    </div>
+    <div class="mx-auto col-sm col-md-6">
+      <h3>Или позвоните нашему менеджеру:</h3>
+      <div class="d-flex align-items-start">
+        <img class="px-2 fs-2 rounded" src="{% static "img/alesya.webp" %}">
+        <div>
+          <h3 class="mb-0 fw-bold fs-4 text-body-emphasis">Алеся</h3>
+          <a class="nav-link" href="tel:+375293147394">+375-29-314-73-94</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

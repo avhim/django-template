@@ -4,14 +4,15 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
+from .amocrm import amocrm_send_lead
+
 logger = get_task_logger(__name__)
 
 
 @shared_task(bind=True)
-def send_notification_mail(msg, target_mail="e.avhim@gmail.com"):
-    mail_subject = "Заявка с сайта"
+def send_notification_mail(target_mail="unklerufus@gmail.com", msg=None):
     send_mail(
-        subject=mail_subject,
+        subject="Заявка с сайта",
         message=msg,
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[target_mail],
@@ -19,5 +20,7 @@ def send_notification_mail(msg, target_mail="e.avhim@gmail.com"):
     )
     return f'Email was send to {target_mail}'
 
-def amocrm_webhook(self):
-    pass
+@shared_task(bind=True)
+def send_amocrm(msg=None):
+    amocrm_send_lead(msg)
+    return f'Lead was send to amocrm'

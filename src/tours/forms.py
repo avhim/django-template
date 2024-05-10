@@ -47,14 +47,6 @@ class TourDescriptionDayForm(forms.ModelForm):
         # self.fields['name'].widget.attrs['placeholder'] = "Your name"
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = input_css_class
-        self.textarea_id_counter = 0
-        self.fields['description'].widget = CKEditorUploadingWidget(attrs={'id':self.get_textarea_next_id})
-
-    def get_textarea_next_id(self):
-        result = self.base_textarea_id + str(self.textarea_id_counter)
-        self.textarea_id_counter += 1
-        return result
-
 
 TourDescriptionDayModelFormSet = modelformset_factory(
     TourDescriptionDay,
@@ -87,3 +79,21 @@ class TourDayQuotaForm(forms.ModelForm):
             if field in ['active']:
                 continue
             self.fields[field].widget.attrs['class'] = input_css_class
+
+TourDayQuotaModelFormSet = modelformset_factory(
+    TourDayQuota,
+    form=TourDayQuotaForm,
+    exclude=["tour"],
+    extra=0,
+    can_delete=True
+)
+
+TourDayQuotaInlineFormSet = inlineformset_factory(
+    Tour,
+    TourDayQuota,
+    form=TourDayQuotaForm,
+    formset=TourDayQuotaModelFormSet,
+    exclude=["tour"],
+    extra=0,
+    can_delete=True
+)

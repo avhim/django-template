@@ -15,7 +15,6 @@ class CallBackForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = input_css_class
 
-    # def send_email(self,name=None, phone=None, url=None):
-    def send_email(self, callback):
-        msg = f' Пользователь имя: {callback.name} \n номер телефона: {callback.phone_number} \n оставил заявку на странице {callback.url} \n в {callback.timestamp}'
+    def send_email(self,name=None, phone=None, url=None):
+        msg = f' Пользователь имя: {name} \n номер телефона: {phone} \n оставил заявку на странице {url} \n в '
         send_notification_mail.delay(msg)

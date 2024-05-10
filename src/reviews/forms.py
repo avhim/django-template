@@ -2,7 +2,7 @@ from django import forms
 from .models import Review
 
 
-class ReviewCreateForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['rating', 'content']

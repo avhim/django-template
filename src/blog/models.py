@@ -1,6 +1,8 @@
-from django.db import models
-from django.urls import reverse
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
+from django.db import models
+from django.db.models import Avg
+from django.urls import reverse
 
 from ckeditor_uploader.fields import RichTextUploadingField
 from django_resized import ResizedImageField
@@ -21,6 +23,8 @@ class Post(models.Model):
 
     description = RichTextUploadingField(verbose_name='Пост')
 
+    reviews = GenericRelation(Review, related_query_name="post")
+
     count_views = models.PositiveIntegerField(default=0, verbose_name='Количество просмотров')
 
     timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
@@ -33,12 +37,22 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"slug": self.slug})
 
-    @property
-    def reviews(self):
-        qs = Review.objects.filter_by_instance(instance=self)
-        return qs
+    # @property
+    # def reviews(self):
+    #     qs = Review.objects.filter_by_instance(instance=self)
+    #     count_reviews = 0
+    #     avg_rating = "Оставьте первым отзыв"
+
+    #     if qs.exists():
+    #         count_reviews = qs.count()
+    #         avg_rating = f"{qs.aggregate(Avg('rating'))['rating__avg']:.2f}"
+    #     content = {
+    #         "reviews": qs,
+    #         "count_reviews": count_reviews,
+    #         "avg_rating": avg_rating,
+    #     }
+    #     return content
 
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
-        ordering = ["-timestamp", "-updated"]

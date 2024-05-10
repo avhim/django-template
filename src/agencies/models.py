@@ -28,7 +28,7 @@ class Agency(models.Model):
         return self.title
 
     # def get_absolute_url(self):
-    #     return reverse('agency-profile', kwargs={'slug': self.user.username})
+    #     return reverse('agency-profile', kwargs={'slug': self.title})
 
     class Meta:
         verbose_name = 'Агентство'

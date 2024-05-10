@@ -9,7 +9,7 @@ class AgencyAdmin(admin.ModelAdmin):
     list_display_links = ["title"]
     list_editable = ["active"]
     list_filter = ["active"]
-    search_fields = ('title',)
+    search_fields = ('title', 'unp', )
 
     class Meta:
         model = Agency

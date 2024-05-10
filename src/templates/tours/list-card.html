@@ -1,24 +1,59 @@
-<div class="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-    {% if object.img %}
-        <a href="{{ object.get_absolute_url }}">
-            <img class="rounded-t-lg" src="{{ object.img.url }}" alt="" />
-        </a>
-    {% endif %}
-    <div class="p-5 space-y-2">
-        <a href="{{ object.get_absolute_url }}">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ object.title }} {{ object.price }}{{ object.currency }}</h5>
-        </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ object.description_tour }}</p>
-        <div class="flex items-center pb-2">
-            <svg class="w-4 h-4 mr-1 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
-            <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">73 reviews</p>
+<div class="col-md-6 col-xl-4">
+    <div class="card card-hover-shadow pb-0 h-100">
+        <!-- Overlay item -->
+        <div class="position-relative">
+            <!-- Image -->
+            <img class="card-img-top" src="{{ object.img.url }}" alt="" />
+            <!-- Overlay -->
+            <div class="card-img-overlay d-flex flex-column p-4 z-index-1">
+                <!-- Card overlay top -->
+                <div>
+                    <span class="badge text-bg-danger">30% Off</span>
+                    <span class="badge text-bg-dark">Adventure</span>
+                </div>
+                <!-- Card overlay bottom -->
+                <div class="w-100 mt-auto">
+                    <span class="badge text-bg-white fs-6">Дней: {{ object.num_days }}</span>
+                </div>
+            </div>
         </div>
-        <a type="button" href="{{ object.get_absolute_url }}" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
-            Программа тура
-        </a>
+        <!-- Image -->
+
+        <!-- Card body START -->
+        <div class="card-body px-3">
+            <!-- Title -->
+            <h5 class="card-title mb-0"><a href="{{ object.get_absolute_url }}" class="stretched-link">{{ object.title }}</a></h5>
+            <span class="small"><i class="far fa-calendar-alt me-2"></i>April 12-17</span>
+
+            <!-- List -->
+            <ul class="nav nav-divider mt-3 mb-0">
+                <li class="nav-item h6 fw-normal mb-0">
+                    <i class="fa-solid fa-star text-orange me-2"></i>{{ object.reviews__rating__avg }}
+                </li>
+                <li class="nav-item h6 fw-normal mb-0">
+                    Отзывов: {{ object.reviews__count }}
+                </li>
+            </ul>
+        </div>
+        <!-- Card body END -->
+
+        <!-- Card footer START-->
+        <div class="card-footer pt-0">
+            <!-- Price and Button -->
+            <div class="d-sm-flex justify-content-sm-between align-items-center flex-wrap">
+                <!-- Price -->
+                <div class="hstack gap-2">
+                    <h5 class="fw-normal text-success mb-0">{{ object.price }}{{ object.currency }}</h5>
+                    <small>/за человека</small>
+                    <span class="text-decoration-line-through">{{ object.old_price }}{{ object.currency }}</span>
+                </div>
+                <!-- Button -->
+                <div class="mt-2 mt-sm-0">
+                    <a href="#" class="btn btn-sm btn-primary mb-0">Подробнее</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+<!-- Card item END -->

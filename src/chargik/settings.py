@@ -48,9 +48,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.telegram',
+    'bootstrap5',
     'ckeditor',
     'ckeditor_uploader',
     'django_celery_results',
+    "debug_toolbar",
     'easy_thumbnails',
     'rest_framework',
 
@@ -58,11 +60,15 @@ INSTALLED_APPS = [
     'blog',
     'callback',
     'clients',
+    'invoices',
+    'hotels',
     'tours',
     'reviews',
+    'users',
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -99,25 +105,32 @@ WSGI_APPLICATION = "chargik.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+DB_SQLITE = "sqlite"
+DB_POSTGRESQL = "postgresql"
+
+DATABASES_ALL = {
+    DB_SQLITE: {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    },
+    DB_POSTGRESQL: {
+        "ENGINE": "django.db.backends.postgresql",
+        'NAME': config("POSTGRES_NAME", default=None),
+        'USER': config("POSTGRES_USER", default=None),
+        'PASSWORD': config("POSTGRES_PASSWORD", default=None),
+        'HOST': config("POSTGRES_HOST", default='localhost'),
+        'PORT': config("POSTGRES_PORT", cast=int, default=None)
+    },
+}
+
+# DATABASES = {"default": DATABASES_ALL[config("DJANGO_DB", DB_SQLITE)]}
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
-# DATABASES = {
-#   'default': {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': config("DATABASE_NAME", default=None),
-#     'USER': config("DATABASE_USERNAME", default=None),
-#     'PASSWORD': config("DATABASE_USER_PASSWORD", default=None),
-#     'HOST': 'localhost',
-#     'PORT': '',
-#   }
-# }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -163,6 +176,9 @@ MEDIA_ROOT = BASE_DIR.parent / "local-cdn" / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
+AUTH_USER_MODEL = "users.CustomUser"
+
 SITE_ID = 1
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -191,7 +207,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-DJANGORESIZED_DEFAULT_SIZE = [1024, 768]
+
 DJANGORESIZED_DEFAULT_QUALITY = 75
 DJANGORESIZED_DEFAULT_KEEP_META = True
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'WEBP'
@@ -215,13 +231,14 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # CELERY SETTINGS
-CELERY_BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://localhost:6379")
+CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND", default="redis://localhost:6379")
 CELERY_ACCEPT_CONTENT = {'application/json'}
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Minsk'
 CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 # SMTP SETTINGS
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -242,3 +259,9 @@ THUMBNAIL_PROCESSORS = (
 
 THUMBNAIL_EXTENSION = 'webp'
 THUMBNAIL_TRANSPARENCY_EXTENSION = 'webp'
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
